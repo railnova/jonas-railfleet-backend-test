@@ -3,7 +3,7 @@ Test project for Railfleet Python Backend Job 2021
 
 ## Setup
 
-Cloen this repository on your computer.
+Clone this repository on your computer.
 
 In the project's directory create a new virtual environment and activate it.
 ```bash
@@ -20,14 +20,15 @@ Create the empty database with the projects layout:
 python manage.py migrate
 ```
 
+Create a super user to have access to the admin pannel:
+```bash
+python manage.py createsuperuser
+```
+
 You can now run the django application locally with:
 ```bash
 python manage.py runserver
 ```
-
-You can get access to the admin of the application with the following credentials:
-- user: admin
-- password: admin
 
 For exercice 3 you will also need to have deno installed.
 We will let you figure that out (https://deno.land/)
@@ -39,7 +40,7 @@ Create a single pull request for this repository with the following additional f
 ### 1) Auto user for defects
 
 The defect model can be found here: `./defect/models.py`.
-We would like than when creating a new defect, the user foreign key would be automatically set to the user creating it.
+We would like that when creating a new defect, the user foreign key would be automatically set to the user creating it.
 
 ### 2) Create an REST API for the Defect model
 
