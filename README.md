@@ -15,6 +15,11 @@ No big list of requirements here, just install Django:
 pip install Django
 ```
 
+Create the empty database with the projects layout:
+```bash
+python manage.py migrate
+```
+
 You can now run the django application locally with:
 ```bash
 python manage.py runserver
