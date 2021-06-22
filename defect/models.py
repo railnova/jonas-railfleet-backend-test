@@ -10,3 +10,10 @@ class Defect(models.Model):
 
     def __str__(self):
         return self.comment
+
+    # Override user based on current request, then do the rest of the save
+    def save(self, *args, **kwargs):
+        req = current_request()
+        self.user = req.user
+        super(Defect, self).save(*args, **kwargs)
+
