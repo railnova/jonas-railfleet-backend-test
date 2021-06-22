@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import viewsets
 from defect.models import Defect
 from defect.serializers import DefectSerializer

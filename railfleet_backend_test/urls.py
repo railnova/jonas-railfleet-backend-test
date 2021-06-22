@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
-from rest_framework import routers, serializers, viewsets
+from rest_framework import routers
 
 from defect.views import DefectViewSet
 
