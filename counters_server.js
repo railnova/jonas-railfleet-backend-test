@@ -11,8 +11,8 @@ function sleep(ms) {
 
 for await (const req of server) {
 
-  console.log("Received a thing")
-  await sleep(2000);
+  console.log("Received a thing (sleep)")
+  await sleep(10000);
   await req.respond({
     status: 200,
   });
