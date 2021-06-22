@@ -14,7 +14,8 @@ from defect.models import Defect
 class DefectSerializer(serializers.HyperlinkedModelSerializer):
     # PK because we don't need to return anything sensitive, right?
     # UUID would be nice here
-    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+    user = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all().order_by('pk'))
 
     class Meta:
         model = Defect
