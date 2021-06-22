@@ -4,10 +4,18 @@ const server = serve({ port: 8888 });
 console.log("Counter server is up!");
 console.log("Waiting on new request...");
 console.log("");
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 for await (const req of server) {
+
+  console.log("Received a thing")
+  await sleep(2000);
   await req.respond({
     status: 200,
   });
-  console.log("Received a thing")
+  console.log("done")
   // console.log(Deno.readAll(req.body))
 }
