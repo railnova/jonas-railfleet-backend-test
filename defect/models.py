@@ -27,9 +27,14 @@ class Defect(models.Model):
 
     # Override user based on current request, then do the rest of the save
     def save(self, *args, **kwargs):
-        req = current_request()
-        self.user = req.user
-        super(Defect, self).save(*args, **kwargs)
+        try:
+            req = current_request()
+            self.user = req.user
+        except Exception as e:
+            print("Could not get user from request, probably not using an authenticated session. CLI? Shell? Falling back to admin user")
+            self.user = User.objects.get(pk=1)
+        finally:
+            super(Defect, self).save(*args, **kwargs)
 
 
 @receiver(post_save, sender=Defect)

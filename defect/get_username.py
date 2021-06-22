@@ -8,7 +8,11 @@ _requests = {}
 
 
 def current_request():
-    return _requests.get(current_thread().ident, None)
+    try:
+        return _requests.get(current_thread().ident, None)
+    except Exception as e:
+        print("Probably no session here!")
+        raise
 
 
 class RequestMiddleware(MiddlewareMixin):
