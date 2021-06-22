@@ -5,7 +5,8 @@ from django.utils.timezone import now
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 
-from defect.utils import poster
+# from defect.utils import celery_poster
+from defect.tasks import celery_poster
 from defect.get_username import current_request
 
 import asyncio
@@ -41,10 +42,10 @@ class Defect(models.Model):
 def notify_deno_created(sender, instance, created, **kwargs):
     if created:
         data = {"user": instance.user.pk, "action": 'create'}
-        poster(url=url_endpoint_deno, payload=data)
+        celery_poster.delay(url=url_endpoint_deno, payload=data)
 
 
 @receiver(post_delete, sender=Defect)
 def notify_deno_deleted(sender, instance, **kwargs):
     data = {"user": instance.user.pk, "action": 'delete'}
-    poster(url_endpoint_deno, data)
+    celery_poster.delay(url_endpoint_deno, data)
